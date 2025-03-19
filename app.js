@@ -18,4 +18,46 @@ console.log(JS_obj);
 
 console.log(JS_obj.fact);
 
+//Our first API request using fetch()
+let url = "https://catfact.ninja/fact";
+
+/*
+fetch(url)
+.then((response)=>{
+    console.log(response);
+    // console.log(response.json());// this method again returns a promise
+    response.json().then((data)=>{
+        console.log(data);
+    })
+})
+.catch((err)=>{
+    console.log(err);
+});
+*/
+
+//using method chaining
+fetch(url)
+.then((res)=>{
+    console.log(res);
+    return res.json();// parse data
+})
+.then((data)=>{
+    console.log(data.fact);
+    return fetch(url);//another request and so on 
+})
+.then((res)=>{
+    console.log(res);
+    return res.json();// parse data
+})
+.then((data)=>{
+    console.log(data.fact);
+})
+.catch((err)=>{
+    console.log(err);
+});
+
+console.log("This will print first as API calls are asynchronous");
+
+
+
 
