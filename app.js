@@ -42,7 +42,7 @@ fetch(url)
     return res.json();// parse data
 })
 .then((data)=>{
-    console.log(data.fact);
+    console.log("fact 1 : " , data.fact);
     return fetch(url);//another request and so on 
 })
 .then((res)=>{
@@ -50,7 +50,7 @@ fetch(url)
     return res.json();// parse data
 })
 .then((data)=>{
-    console.log(data.fact);
+    console.log("fact 2 : " , data.fact);
 })
 .catch((err)=>{
     console.log(err);
@@ -58,6 +58,21 @@ fetch(url)
 
 console.log("This will print first as API calls are asynchronous");
 
-
+//using async and await keywords
+async function getCatFact()
+{
+    try
+    {
+        let res = await fetch(url);
+        let data = await res.json();
+        console.log("fact is :" , res);
+        console.log(data.fact);
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+}
+getCatFact();
 
 
